@@ -27,9 +27,65 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 
 int main(int argc, char* argv[])
 {
     printf("Hello world!\n");
     return 0;
 }
+
+// We will write Sieve of Erathostens here:
+// Check how the binary is created:
+
+// #define SET_BIT(arr, index) (arr[(index) / 8] |= (1 << ((index) % 8)))
+// #define CHECK_BIT(arr, index) (arr[(index) / 8] & (1 << ((index) % 8)))
+
+
+// int sieve_of_eratosthenes(int n) {
+//     // Allocate memory for the bit array
+//     int size = (n + 7) / 8;  // (n / 8) rounded up
+//     unsigned char *prime = malloc(size);
+//     if (!prime) {
+//         fprintf(stderr, "Memory allocation failed\n");
+//         return -1;
+//     }
+//     memset(prime, 0, size);  // Initialize all bits to 0 (true)
+
+//     int p = 2;
+
+//     while (p * p <= n) {
+//         // If prime[p] is still true, then it's a prime
+//         if (!CHECK_BIT(prime, p)) {
+//             // Marking multiples of p as false (non-prime)
+//             for (int i = p * p; i <= n; i += p) {
+//                 SET_BIT(prime, i);
+//             }
+//         }
+//         p++;
+//     }
+
+//     // Counting all prime numbers
+//     int prime_count = 0;
+//     for (int p = 2; p <= n; p++) {
+//         if (!CHECK_BIT(prime, p)) {
+//             prime_count++;
+//         }
+//     }
+
+//     // Free the allocated memory
+//     free(prime);
+
+//     return prime_count;
+// }
+
+// int main() {
+//     int n = 1000000;
+//     int count = sieve_of_eratosthenes(n);
+//     if (count != -1) {
+//         printf("Number of prime numbers up to %d: %d\n", n, count);
+//     }
+//     return 0;
+// }
