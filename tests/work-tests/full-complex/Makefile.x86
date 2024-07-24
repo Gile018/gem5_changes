@@ -1,0 +1,21 @@
+all: program64-static program64-dynamic program32-static
+
+program64-static: program.cpp dockcross-x64
+	./dockcross-x64 bash -c 'g++ program.cpp -o program64-static -static -std=c++11'
+
+program64-dynamic: program.cpp dockcross-x64
+	./dockcross-x64 bash -c 'g++ program.cpp -o program64-dynamic -std=c++11'
+
+program32-static: program.cpp dockcross-x86
+	./dockcross-x86 bash -c 'g++ program.cpp -o program32-static -static -std=c++11'
+
+dockcross-x64:
+	docker run --rm dockcross/linux-x64 > ./dockcross-x64
+	chmod +x ./dockcross-x64
+
+dockcross-x86:
+	docker run --rm dockcross/linux-x86 > ./dockcross-x86
+	chmod +x ./dockcross-x86
+
+clean:
+	rm -f dockcross-* program64-static program64-dynamic program32-static
